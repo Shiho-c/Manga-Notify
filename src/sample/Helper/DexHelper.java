@@ -38,7 +38,17 @@ public class DexHelper {
         return mangaInfo;
 
     }
+    public ArrayList<String> DexLatestUpdateIDs() throws IOException {
+        HashMap<String, String> params = new HashMap<>();
+        String limit = "20";
+        params.put("limit", limit);
+        params.put("order[publishAt]", "desc");
+        String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);
+        JSONObject result = Helper.SendGetRequest(url, client);
+        JSONArray results = result.getJSONArray("results");
+        return GetIDFromJSON(results);
 
+    }
 
     public JSONObject ViewMangaID(String id, JSONObject mangaInfo) throws IOException {
         String url = String.format("https://api.mangadex.org/manga/%s", id);
@@ -47,15 +57,26 @@ public class DexHelper {
         url = Helper.BuildUrl(url, params);
 
         JSONObject result = Helper.SendGetRequest(url, client);
-        System.out.println("Getting ID");
         String title = GetTitleFromID(result);
-        System.out.println("Getting cover");
         String cover = GetCoverFromID(result);
-        System.out.println("Gotem");
         JSONObject info = new JSONObject();
-        info.put("id", id);
         info.put("cover", cover);
         mangaInfo.put(title, info);
+        return mangaInfo;
+
+    }
+
+    public HashMap<String, String> ViewMangaID(String id, HashMap<String, String> mangaInfo) throws IOException {
+        String url = String.format("https://api.mangadex.org/manga/%s", id);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("includes[]", "cover_art");
+        url = Helper.BuildUrl(url, params);
+
+        JSONObject result = Helper.SendGetRequest(url, client);
+        String title = GetTitleFromID(result);
+        String cover = GetCoverFromID(result);
+        mangaInfo.put("cover", cover);
+        mangaInfo.put("title", title);
         return mangaInfo;
 
     }
