@@ -24,36 +24,45 @@ public class DexHelper {
 
     }
 
-    public ArrayList<String> DexLatestUpdates() throws IOException {
-        String limit = "10";
+    public JSONObject DexLatestUpdates() throws IOException {
         HashMap<String, String> params = new HashMap<>();
+        String limit = "100";
         params.put("limit", limit);
         params.put("order[publishAt]", "desc");
         String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);
         JSONObject result = Helper.SendGetRequest(url, client);
         JSONArray results = result.getJSONArray("results");
+        JSONObject mangaInfo = new JSONObject();
         ArrayList<String> latestMangaIDs = GetIDFromJSON(results);
-        ArrayList<String> titles = ViewMangaIDs(latestMangaIDs);
-        return titles;
+        mangaInfo = ViewMangaIDs(latestMangaIDs, mangaInfo);
+        return mangaInfo;
 
     }
 
 
-    public String ViewMangaID(String id) throws IOException {
+    public JSONObject ViewMangaID(String id, JSONObject mangaInfo) throws IOException {
         String url = String.format("https://api.mangadex.org/manga/%s", id);
+        HashMap<String, String> params = new HashMap<>();
+        params.put("includes[]", "cover_art");
+        url = Helper.BuildUrl(url, params);
+
         JSONObject result = Helper.SendGetRequest(url, client);
         String title = GetTitleFromID(result);
-        return title;
+        String cover = GetCoverFromID(result);
+        JSONObject info = new JSONObject();
+        info.put("id", id);
+        info.put("cover", cover);
+        mangaInfo.put(title, info);
+        return mangaInfo;
 
     }
 
-    public ArrayList<String> ViewMangaIDs(ArrayList<String> ids) throws IOException {
+    public JSONObject ViewMangaIDs(ArrayList<String> ids, JSONObject mangaInfo) throws IOException {
         ArrayList<String> titles = new ArrayList<>();
         for(String id: ids) {
-            String title = ViewMangaID(id);
-            titles.add(title);
+            mangaInfo = ViewMangaID(id, mangaInfo);
         }
-        return titles;
+        return mangaInfo;
     }
 
     public String GetTitleFromID(JSONObject result) {
@@ -64,8 +73,18 @@ public class DexHelper {
         return title.get("en").toString();
     }
 
-    public void GetCoverFromID(String id) {
-
+    public String GetCoverFromID(JSONObject result) {
+        HashMap<String, String> mangaDictionary = new HashMap<>();
+        JSONArray relationships = result.getJSONArray("relationships");
+        String coverFileName = "";
+        for (int i = 0; i < relationships.length(); i++) {
+            JSONObject type = (JSONObject) relationships.get(i);
+            if (type.get("type").equals("cover_art")) {
+                JSONObject typeAttributes = (JSONObject) type.get("attributes");
+                coverFileName = typeAttributes.get("fileName").toString();
+            }
+        }
+        return coverFileName;
     }
 
     public ArrayList<String> GetIDFromJSON(JSONArray latestResult) {
