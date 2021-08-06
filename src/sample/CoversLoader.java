@@ -50,12 +50,13 @@ public class CoversLoader implements Runnable {
                 counter = 0;
                 hbox = new HBox();
             }
+            if(counter == 0) {addHBoxToVBox(hbox);}
+
             counter++;
         }
     }
 
     public void addImageToBox(HBox hbox, ImageView imageView, int counter) {
-        if(counter == 0) {addHBoxToVBox(hbox);}
             Platform.runLater(new Runnable(){
             @Override
             public void run() {
