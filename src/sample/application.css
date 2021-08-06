@@ -1,0 +1,16 @@
+.root {
+    -fx-background-color: #ffffff;
+}
+
+#LoginButton {
+    -fx-background-color: #FF6740;
+}
+
+#NavigationBar {
+    -fx-background-color: #808080;
+}
+
+
+.scroll-pane .viewport {
+       -fx-background-color: transparent;
+}
