@@ -1,5 +1,7 @@
 package sample.Helper;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,6 +59,14 @@ public class Helper {
             System.out.println(Objects.requireNonNull(response.body()).string());
         }
 
+    }
+
+    public ImageView LoadImageFromUrl(String url) {
+        ImageView imageView = new ImageView(new Image(url));
+        imageView.setCache(true);
+        imageView.setFitHeight(300);
+        imageView.setFitWidth(150);
+        return imageView;
     }
 
 

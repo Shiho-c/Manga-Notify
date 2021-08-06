@@ -26,7 +26,7 @@ public class DexHelper {
 
     public JSONObject DexLatestUpdates() throws IOException {
         HashMap<String, String> params = new HashMap<>();
-        String limit = "100";
+        String limit = "20";
         params.put("limit", limit);
         params.put("order[publishAt]", "desc");
         String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);

@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import org.json.JSONObject;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
+import javafx.concurrent.Task;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,9 +27,11 @@ public class Scene2Controller {
         DexHelper = new DexHelper();
         Helper = new Helper();
 
-        JSONObject MangaInfo = DexHelper.DexLatestUpdates();
-        int counter = 0;
-        HBox hbox = new HBox();
+        //JSONObject MangaInfo = DexHelper.DexLatestUpdates();
+
+        Shit task = new Shit(HomeVerticalBox);
+        new Thread(task).start();
+        /*
         for (int i = 0; i < MangaInfo.names().length(); i++) {
             System.out.println(i + " out of " + MangaInfo.names().length());
             if(counter >= 5) {
@@ -42,39 +45,14 @@ public class Scene2Controller {
             String cover = titleJson.get("cover").toString();
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", id, cover);
 
-            ImageView imageView = new ImageView(new Image(url));
-            imageView.setCache(true);
-            imageView.setFitHeight(300);
-            imageView.setFitWidth(150);
+            ImageView imageView = Helper.LoadImageFromUrl(url);
+
             hbox.getChildren().add(imageView);
             counter ++;
-        }
-
-        /*
-        System.out.println("Shit" + titles);
-        for(String t:titles) {
-            Label b = new Label(t);
-            System.out.println(t);
-            HomeVerticalBox.getChildren().add(b);
-        }*/
-        /*
-        try {
-            for(int i = 0; i < 10; i ++) {
-                HBox hbox = new HBox();
-                for (int a = 0; a < 10; a++) {
-                    ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("Resources/shit.jpg"))));
-                    imageView.setCache(true);
-                    imageView.setFitHeight(300);
-                    imageView.setFitWidth(150);
-                    hbox.getChildren().add(imageView);
-                }
-                HomeVerticalBox.getChildren().add(hbox);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-
+            */
     }
-
 }
+
+
+
+
