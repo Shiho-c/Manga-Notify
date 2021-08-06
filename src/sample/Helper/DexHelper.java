@@ -47,8 +47,11 @@ public class DexHelper {
         url = Helper.BuildUrl(url, params);
 
         JSONObject result = Helper.SendGetRequest(url, client);
+        System.out.println("Getting ID");
         String title = GetTitleFromID(result);
+        System.out.println("Getting cover");
         String cover = GetCoverFromID(result);
+        System.out.println("Gotem");
         JSONObject info = new JSONObject();
         info.put("id", id);
         info.put("cover", cover);

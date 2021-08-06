@@ -1,20 +1,12 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.json.JSONObject;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
-import javafx.concurrent.Task;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.ArrayList;
+
 public class Scene2Controller {
     private sample.Helper.DexHelper DexHelper;
     private sample.Helper.Helper Helper;
@@ -29,7 +21,7 @@ public class Scene2Controller {
 
         //JSONObject MangaInfo = DexHelper.DexLatestUpdates();
 
-        Shit task = new Shit(HomeVerticalBox);
+        CoversLoader task = new CoversLoader(HomeVerticalBox);
         new Thread(task).start();
         /*
         for (int i = 0; i < MangaInfo.names().length(); i++) {
