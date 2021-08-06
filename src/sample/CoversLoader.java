@@ -39,24 +39,23 @@ public class CoversLoader implements Runnable {
 
         for (String mangaID : MangaIDs) {
             HashMap<String, String> mangaInfo = new HashMap<>();
+            System.out.println("Viewing manga id");
             mangaInfo = DexHelper.ViewMangaID(mangaID, mangaInfo);
 
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
-
+            System.out.println("loading from url");
             ImageView imageView = Helper.LoadImageFromUrl(url);
-            HBox hboxCopy = hbox;
-            addImageToBox(hboxCopy, imageView, counter);
-            if (counter >= 5) {
-                counter = 0;
-                hbox = new HBox();
-            }
-            if(counter == 0) {addHBoxToVBox(hbox);}
+            System.out.println("addingi mage to view");
+            addImageToBox(hbox, imageView);
+            System.out.println("done");
 
+            if (counter >= 6) { counter = 0; hbox = new HBox(); }
+            if(counter == 0) {addHBoxToVBox(hbox);}
             counter++;
         }
     }
 
-    public void addImageToBox(HBox hbox, ImageView imageView, int counter) {
+    public void addImageToBox(HBox hbox, ImageView imageView) {
             Platform.runLater(new Runnable(){
             @Override
             public void run() {

@@ -1,5 +1,6 @@
 package sample.Helper;
 
+import javafx.scene.CacheHint;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import okhttp3.*;
@@ -63,9 +64,13 @@ public class Helper {
 
     public ImageView LoadImageFromUrl(String url) {
         ImageView imageView = new ImageView(new Image(url));
-        imageView.setCache(true);
+        ///imageView.setCache(true);
+        //imageView.setCacheHint(CacheHint.SPEED);
         imageView.setFitHeight(300);
         imageView.setFitWidth(150);
+        //imageView.setSmooth(true);
+        //imageView.setPreserveRatio(true);
+
         return imageView;
     }
 
