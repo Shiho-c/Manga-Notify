@@ -29,7 +29,10 @@ public class Helper {
         JSONObject results;
         try (Response response = client.newCall(request).execute()) {
 
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            if (!response.isSuccessful()){
+                System.out.println("Unexpected bullfuck " + response);
+                throw new IOException("Unexpected code " + response);
+            }
 
             // Get response body
             results = new JSONObject(Objects.requireNonNull(response.body()).string());

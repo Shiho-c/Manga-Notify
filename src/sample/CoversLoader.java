@@ -13,61 +13,70 @@ import sample.Helper.DexHelper;
 import sample.Helper.Helper;
 
 public class CoversLoader extends Task<Void> {
-    private HBox HomeHorizontalBox;
+    private VBox HomeVerticalBox;
     private ArrayList<String> MangaIDs;
     private DexHelper DexHelper;
     private Helper Helper;
 
-    public CoversLoader(HBox HomeVerticalBox, ArrayList<String> MangaIDs) {
-        this.HomeHorizontalBox = HomeVerticalBox;
+    public CoversLoader(VBox HomeVerticalBox, ArrayList<String> MangaIDs) {
+        this.HomeVerticalBox = HomeVerticalBox;
         this.MangaIDs = MangaIDs;
     }
 
     @Override protected Void call () throws Exception {
         DexHelper = new DexHelper();
         Helper = new Helper();
-        int counter = 0;
-        VBox vbox = new VBox();
-        System.out.println(this.MangaIDs.size());
+        int counter = 1;
+        HBox coverHorizontalBox = new HBox();
+        HBox titleHorizontalBox = new HBox();
+        addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
         for(String mangaID: this.MangaIDs) {
-            counter++;
             HashMap<String, String> mangaInfo = new HashMap<>();
             mangaInfo = DexHelper.ViewMangaID(mangaID, mangaInfo);
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
             ImageView imageView = new ImageView();
             imageView = Helper.LoadImageFromUrl(imageView, url, 130, 190);
-
-            Label label = new Label(mangaInfo.get("title"));
-            vbox.getChildren().add(label);
-
-
-            SetCoversToHBox(vbox, imageView);
-            //hbox.getChildren().add(imageView);
-
-            //if(counter == 0) { ; }
-            if (counter % 6 == 0 ) { addHBoxToVBox(vbox); vbox = new VBox(); }
-
+            SetTitlesToHBox(titleHorizontalBox, mangaInfo.get("title"));
+            SetCoversToHBox(coverHorizontalBox, imageView);
+            if (counter % 7 == 0 ) {
+                if(!(HomeVerticalBox.getChildren().contains(coverHorizontalBox))) {
+                    addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
+                }
+                titleHorizontalBox = new HBox();
+                coverHorizontalBox = new HBox();
+            }
+            counter++;
 
         }
         return null;
 
     }
 
-    public void addHBoxToVBox(VBox vbox) {
+    public void addHBoxToVBox(HBox hbox, HBox title) {
         Platform.runLater(new Runnable(){
             @Override
             public void run() {
-
-                HomeHorizontalBox.getChildren().add(vbox);
+                HomeVerticalBox.getChildren().add(title);
+                HomeVerticalBox.getChildren().add(hbox);
             }
         });
     }
 
-    public void SetCoversToHBox(VBox vbox, ImageView imageView) {
+    public void SetCoversToHBox(HBox hbox, ImageView imageView) {
         Platform.runLater(new Runnable(){
             @Override
             public void run() {
-                vbox.getChildren().add(imageView);
+                hbox.getChildren().add(imageView);
+            }
+        });
+    }
+
+    public void SetTitlesToHBox(HBox hbox, String title) {
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                Label titleLabel = new Label(title);
+                hbox.getChildren().add(titleLabel);
             }
         });
     }

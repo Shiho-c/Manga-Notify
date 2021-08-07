@@ -1,16 +1,31 @@
 .root {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #FFFFFF;
 }
-
 #LoginButton {
     -fx-background-color: #FF6740;
 }
 
-#NavigationBar {
-    -fx-background-color: #808080;
+#HomeButton {
+    -fx-background-color: #000000;
+}
+#FollowsButton {
+    -fx-background-color: #000000;
+}
+#SettingsButton {
+    -fx-background-color: #000000;
 }
 
+#HomeButton:hover {
+    -fx-background-color: #FF6740;
+}
+#FollowsButton:hover {
+    -fx-background-color: #FF6740;
+}
+#SettingsButton:hover {
+    -fx-background-color: #FF6740;
+}
 
 .scroll-pane .viewport {
        -fx-background-color: transparent;
 }
+

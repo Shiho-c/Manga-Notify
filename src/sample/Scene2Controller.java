@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -18,14 +19,15 @@ public class Scene2Controller {
     private sample.Helper.Helper Helper;
 
     @FXML
-    private HBox HomeHorizontalBox;
-
+    private VBox HomeVerticalBox;
+    @FXML
+    private Button HomeButton;
     @FXML
     private void initialize() throws Exception {
         DexHelper = new DexHelper();
         Helper = new Helper();
         ArrayList<String> MangaIDs = DexHelper.DexLatestUpdateIDs();
-        CoversLoader LoadCovers = new CoversLoader(HomeHorizontalBox, MangaIDs);
+        CoversLoader LoadCovers = new CoversLoader(HomeVerticalBox, MangaIDs);
         Thread th = new Thread(LoadCovers);
         th.setDaemon(true);
         th.start();
