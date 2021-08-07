@@ -1,67 +1,57 @@
 package sample;
 
+
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.HashSet;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class CoversLoader implements Runnable {
+public class CoversLoader extends Task<Void> {
     private VBox HomeVerticalBox;
+    private HashSet<String> MangaIDs;
+    private DexHelper DexHelper;
     private Helper Helper;
-    public CoversLoader(VBox HomeVerticalBox) {
+
+    public CoversLoader(VBox HomeVerticalBox, HashSet<String> MangaIDs) {
         this.HomeVerticalBox = HomeVerticalBox;
-        this.Helper = new Helper();
-
-    }
-    @Override
-    public void run() {
-        try {
-            LoadCover();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.MangaIDs = MangaIDs;
     }
 
-    public void LoadCover() throws IOException {
-        DexHelper DexHelper = new DexHelper();
-        Helper Helper = new Helper();
-        ArrayList<String> MangaIDs = DexHelper.DexLatestUpdateIDs();
+    @Override protected Void call () throws Exception {
+        DexHelper = new DexHelper();
+        Helper = new Helper();
         int counter = 0;
         HBox hbox = new HBox();
-
-        for (String mangaID : MangaIDs) {
+        addHBoxToVBox(hbox);
+        System.out.println(this.MangaIDs.size());
+        for(String mangaID: this.MangaIDs) {
             HashMap<String, String> mangaInfo = new HashMap<>();
-            System.out.println("Viewing manga id");
             mangaInfo = DexHelper.ViewMangaID(mangaID, mangaInfo);
-
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
-            System.out.println("loading from url");
-            ImageView imageView = Helper.LoadImageFromUrl(url);
-            System.out.println("addingi mage to view");
-            addImageToBox(hbox, imageView);
-            System.out.println("done");
+            //ImageView imageView = new ImageView();
+            //imageView = Helper.LoadImageFromUrl(imageView, url);
+            Image image = new Image(url, 130, 190, true, true, true);
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(190);
+            imageView.setFitWidth(130);
+            imageView.preserveRatioProperty();
 
-            if (counter >= 6) { counter = 0; hbox = new HBox(); }
-            if(counter == 0) {addHBoxToVBox(hbox);}
+            SetCoversToHBox(hbox, imageView);
+            //hbox.getChildren().add(imageView);
+            if (counter >= 6) { counter = 0; addHBoxToVBox(hbox); hbox = new HBox(); }
+            //if(counter == 0) { ; }
+
             counter++;
-        }
-    }
 
-    public void addImageToBox(HBox hbox, ImageView imageView) {
-            Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
-                hbox.getChildren().add(imageView);
-            }
-        });
+        }
+        return null;
+
     }
 
     public void addHBoxToVBox(HBox hbox) {
@@ -69,6 +59,15 @@ public class CoversLoader implements Runnable {
             @Override
             public void run() {
                 HomeVerticalBox.getChildren().add(hbox);
+            }
+        });
+    }
+
+    public void SetCoversToHBox(HBox hbox, ImageView imageView) {
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                hbox.getChildren().add(imageView);
             }
         });
     }

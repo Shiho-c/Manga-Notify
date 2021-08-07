@@ -1,11 +1,17 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Scene2Controller {
     private sample.Helper.DexHelper DexHelper;
@@ -15,33 +21,14 @@ public class Scene2Controller {
     private VBox HomeVerticalBox;
 
     @FXML
-    private void initialize() throws IOException {
+    private void initialize() throws Exception {
         DexHelper = new DexHelper();
         Helper = new Helper();
-
-        //JSONObject MangaInfo = DexHelper.DexLatestUpdates();
-
-        CoversLoader task = new CoversLoader(HomeVerticalBox);
-        new Thread(task).start();
-        /*
-        for (int i = 0; i < MangaInfo.names().length(); i++) {
-            System.out.println(i + " out of " + MangaInfo.names().length());
-            if(counter >= 5) {
-                counter = 0;
-                HomeVerticalBox.getChildren().add(hbox);
-                hbox = new HBox();
-            }
-            String title = MangaInfo.names().getString(i);
-            JSONObject titleJson = (JSONObject) MangaInfo.get(title);
-            String id = titleJson.get("id").toString();
-            String cover = titleJson.get("cover").toString();
-            String url = String.format("https://uploads.mangadex.org/covers/%s/%s", id, cover);
-
-            ImageView imageView = Helper.LoadImageFromUrl(url);
-
-            hbox.getChildren().add(imageView);
-            counter ++;
-            */
+        HashSet<String> MangaIDs = DexHelper.DexLatestUpdateIDs();
+        CoversLoader LoadCovers = new CoversLoader(HomeVerticalBox, MangaIDs);
+        Thread th = new Thread(LoadCovers);
+        th.setDaemon(true);
+        th.start();
     }
 }
 

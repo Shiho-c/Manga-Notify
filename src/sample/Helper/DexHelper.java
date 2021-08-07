@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class DexHelper {
     private final OkHttpClient client = new OkHttpClient();
@@ -23,7 +24,7 @@ public class DexHelper {
 
 
     }
-
+    /*
     public JSONObject DexLatestUpdates() throws IOException {
         HashMap<String, String> params = new HashMap<>();
         String limit = "20";
@@ -37,10 +38,10 @@ public class DexHelper {
         mangaInfo = ViewMangaIDs(latestMangaIDs, mangaInfo);
         return mangaInfo;
 
-    }
-    public ArrayList<String> DexLatestUpdateIDs() throws IOException {
+    }*/
+    public HashSet<String> DexLatestUpdateIDs() throws IOException {
         HashMap<String, String> params = new HashMap<>();
-        String limit = "20";
+        String limit = "100";
         params.put("limit", limit);
         params.put("order[publishAt]", "desc");
         String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);
@@ -111,8 +112,8 @@ public class DexHelper {
         return coverFileName;
     }
 
-    public ArrayList<String> GetIDFromJSON(JSONArray latestResult) {
-        ArrayList<String> latestMangaIDs = new ArrayList<>();
+    public HashSet<String> GetIDFromJSON(JSONArray latestResult) {
+        HashSet<String> latestMangaIDs = new HashSet<>();
         for (int i = 0; i < latestResult.length(); i++) {
             JSONObject relationships = (JSONObject) latestResult.get(i);
             JSONArray relationshipsArray = relationships.getJSONArray("relationships");
