@@ -28,9 +28,11 @@ public class CoversLoader extends Task<Void> {
         Helper = new Helper();
         int counter = 0;
         HBox hbox = new HBox();
-        addHBoxToVBox(hbox);
+        //addHBoxToVBox(hbox);
         System.out.println(this.MangaIDs.size());
         for(String mangaID: this.MangaIDs) {
+            counter++;
+            //if (counter >= 6) { counter = 0;  }
             HashMap<String, String> mangaInfo = new HashMap<>();
             mangaInfo = DexHelper.ViewMangaID(mangaID, mangaInfo);
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
@@ -44,10 +46,10 @@ public class CoversLoader extends Task<Void> {
 
             SetCoversToHBox(hbox, imageView);
             //hbox.getChildren().add(imageView);
-            if (counter >= 6) { counter = 0; addHBoxToVBox(hbox); hbox = new HBox(); }
-            //if(counter == 0) { ; }
 
-            counter++;
+            //if(counter == 0) { ; }
+            if (counter % 6 == 0 ) { addHBoxToVBox(hbox); hbox = new HBox(); }
+
 
         }
         return null;
