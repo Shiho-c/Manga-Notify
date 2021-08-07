@@ -21,7 +21,6 @@ public class Helper {
         String url = url_builder.build().toString();
         return url;
     }
-
     public JSONObject SendGetRequest(String url, OkHttpClient client) throws IOException {
         Request request = new Request.Builder()
                 .url(url)

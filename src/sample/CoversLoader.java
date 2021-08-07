@@ -38,7 +38,7 @@ public class CoversLoader extends Task<Void> {
             imageView = Helper.LoadImageFromUrl(imageView, url, 130, 190);
             SetTitlesToHBox(titleHorizontalBox, mangaInfo.get("title"));
             SetCoversToHBox(coverHorizontalBox, imageView);
-            if (counter % 7 == 0 ) {
+            if (counter % 8 == 0 ) {
                 if(!(HomeVerticalBox.getChildren().contains(coverHorizontalBox))) {
                     addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
                 }
@@ -76,6 +76,7 @@ public class CoversLoader extends Task<Void> {
             @Override
             public void run() {
                 Label titleLabel = new Label(title);
+                titleLabel.setMinWidth(130);
                 hbox.getChildren().add(titleLabel);
             }
         });
