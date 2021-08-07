@@ -39,7 +39,7 @@ public class DexHelper {
         return mangaInfo;
 
     }*/
-    public HashSet<String> DexLatestUpdateIDs() throws IOException {
+    public ArrayList<String> DexLatestUpdateIDs() throws IOException {
         HashMap<String, String> params = new HashMap<>();
         String limit = "100";
         params.put("limit", limit);
@@ -112,15 +112,15 @@ public class DexHelper {
         return coverFileName;
     }
 
-    public HashSet<String> GetIDFromJSON(JSONArray latestResult) {
-        HashSet<String> latestMangaIDs = new HashSet<>();
+    public ArrayList<String> GetIDFromJSON(JSONArray latestResult) {
+        ArrayList<String> latestMangaIDs = new ArrayList<>();
         for (int i = 0; i < latestResult.length(); i++) {
             JSONObject relationships = (JSONObject) latestResult.get(i);
             JSONArray relationshipsArray = relationships.getJSONArray("relationships");
 
             for (int a = 0; a < relationshipsArray.length(); a++) {
                 JSONObject mangaType = (JSONObject) relationshipsArray.get(a);
-                if (mangaType.get("type").equals("manga")) {
+                if (mangaType.get("type").equals("manga") && !(latestMangaIDs.contains(mangaType.get("id")))) {
                     latestMangaIDs.add(mangaType.get("id").toString());
                     break;
                 }

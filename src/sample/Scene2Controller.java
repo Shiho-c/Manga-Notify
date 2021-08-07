@@ -18,14 +18,14 @@ public class Scene2Controller {
     private sample.Helper.Helper Helper;
 
     @FXML
-    private VBox HomeVerticalBox;
+    private HBox HomeHorizontalBox;
 
     @FXML
     private void initialize() throws Exception {
         DexHelper = new DexHelper();
         Helper = new Helper();
-        HashSet<String> MangaIDs = DexHelper.DexLatestUpdateIDs();
-        CoversLoader LoadCovers = new CoversLoader(HomeVerticalBox, MangaIDs);
+        ArrayList<String> MangaIDs = DexHelper.DexLatestUpdateIDs();
+        CoversLoader LoadCovers = new CoversLoader(HomeHorizontalBox, MangaIDs);
         Thread th = new Thread(LoadCovers);
         th.setDaemon(true);
         th.start();

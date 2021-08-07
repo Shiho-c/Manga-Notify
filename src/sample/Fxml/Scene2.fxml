@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #000000;" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Scene2Controller">
@@ -12,7 +12,7 @@
          <children>
             <ScrollPane layoutX="6.0" layoutY="7.0" prefHeight="597.0" prefWidth="921.0" style="-fx-background-color: white;">
                <content>
-                  <VBox fx:id="HomeVerticalBox" prefHeight="603.0" prefWidth="920.0" style="-fx-background-color: transparent;" />
+                  <HBox fx:id="HomeHorizontalBox" prefHeight="594.0" prefWidth="918.0" />
                </content>
             </ScrollPane>
          </children>

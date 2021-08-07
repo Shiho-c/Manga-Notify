@@ -62,13 +62,16 @@ public class Helper {
 
     }
 
-    public ImageView LoadImageFromUrl(ImageView imageView, String url) {
-        Image image = new Image(url, true);
+    public ImageView LoadImageFromUrl(ImageView imageView, String url, int width, int height) {
+        Image image = new Image(url, width, height, true, true, true);
         imageView = new ImageView(image);
+        imageView.setFitHeight(190);
+        imageView.setFitWidth(130);
+        //imageView.setPreserveRatio(true);
+        //imageView.preserveRatioProperty();
+
         ///imageView.setCache(true);
         //imageView.setCacheHint(CacheHint.SPEED);
-        imageView.setFitHeight(300);
-        imageView.setFitWidth(150);
         //imageView.setSmooth(true);
         //imageView.setPreserveRatio(true);
 
