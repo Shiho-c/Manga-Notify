@@ -17,17 +17,17 @@
             </ScrollPane>
          </children>
       </AnchorPane>
-      <Button fx:id="HomeButton" layoutY="178.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Home" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="HomeButton" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Home" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="FollowsButton" layoutY="227.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Follows" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="FollowsButton" layoutY="63.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Follows" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="SettingsButton" layoutY="276.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Settings" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="SettingsButton" layoutY="112.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Settings" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
