@@ -27,10 +27,16 @@ public class CoversLoader extends Task<Void> {
         DexHelper = new DexHelper();
         Helper = new Helper();
         int counter = 1;
-        HBox coverHorizontalBox = new HBox();
-        HBox titleHorizontalBox = new HBox();
-        addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
+        HBox coverHorizontalBox =  new HBox();;
+        HBox titleHorizontalBox =  new HBox();;
+        //addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
         for(String mangaID: this.MangaIDs) {
+            if (counter % 8 == 0 ) {
+                titleHorizontalBox = new HBox();
+                coverHorizontalBox = new HBox();
+                addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
+
+            }
             HashMap<String, String> mangaInfo = new HashMap<>();
             mangaInfo = DexHelper.ViewMangaID(mangaID, mangaInfo);
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
@@ -38,13 +44,6 @@ public class CoversLoader extends Task<Void> {
             imageView = Helper.LoadImageFromUrl(imageView, url, 130, 190);
             SetTitlesToHBox(titleHorizontalBox, mangaInfo.get("title"));
             SetCoversToHBox(coverHorizontalBox, imageView);
-            if (counter % 8 == 0 ) {
-                if(!(HomeVerticalBox.getChildren().contains(coverHorizontalBox))) {
-                    addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
-                }
-                titleHorizontalBox = new HBox();
-                coverHorizontalBox = new HBox();
-            }
             counter++;
 
         }
