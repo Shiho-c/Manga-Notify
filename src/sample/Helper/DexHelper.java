@@ -117,13 +117,13 @@ public class DexHelper {
         return "";
     }
 
-    public String RandomMangaParser(JSONObject result) throws IOException {
+    public HashMap<String, String> RandomMangaParser(JSONObject result) throws IOException {
         String mangaID = GetID(result);
         HashMap<String, String> mangaInfo;
         mangaInfo = ViewMangaID(mangaID);
         String cover_url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
-        System.out.println(cover_url);
-        return cover_url;
+        mangaInfo.replace("cover", cover_url);
+        return mangaInfo;
     }
 
 

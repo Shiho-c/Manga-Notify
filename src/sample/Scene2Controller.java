@@ -2,7 +2,6 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +12,6 @@ import sample.Helper.Helper;
 import sample.Tasks.ParseRandom;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Scene2Controller {
     private sample.Helper.DexHelper DexHelper;
@@ -35,7 +33,6 @@ public class Scene2Controller {
     public Scene2Controller() {
         instance = this;
     }
-    // static method to get instance of view
     public static Scene2Controller getInstance() {
         return instance;
     }
@@ -50,7 +47,7 @@ public class Scene2Controller {
         Helper.HidePane(RandomWindow);
         Helper.ShowPane(LatestWindow);
     }
-    public void setLabel(String labelText){
+    public void setRandomTitle(String labelText){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -65,6 +62,8 @@ public class Scene2Controller {
             @Override
             public void run() {
                 RandomThumbnail.setImage(image);
+                RandomThumbnail.setFitHeight(371);
+                RandomThumbnail.setFitHeight(333);
 
             }
         });

@@ -57,7 +57,7 @@
       <AnchorPane fx:id="RandomWindow" layoutX="166.0" layoutY="14.0" prefHeight="613.0" prefWidth="1026.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;" visible="false">
          <children>
             <ImageView fx:id="RandomThumbnail" fitHeight="371.0" fitWidth="333.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="RandomTitle" layoutX="272.0" layoutY="35.0" text="Wind Breaker">
+            <Label fx:id="RandomTitle" layoutX="272.0" layoutY="35.0" prefHeight="46.0" prefWidth="736.0" text="Wind Breaker">
                <font>
                   <Font name="Calibri Bold Italic" size="40.0" />
                </font>

@@ -12,6 +12,7 @@ import sample.Main;
 import sample.Scene2Controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class ParseRandom extends Task<Void> {
     private Helper Helper = new Helper();
@@ -21,8 +22,9 @@ public class ParseRandom extends Task<Void> {
         OkHttpClient client = new OkHttpClient();
         String url = "https://api.mangadex.org/manga/random";
         JSONObject result = Helper.SendGetRequest(url, client);
-        String cover_url = DexHelper.RandomMangaParser(result);
-        Scene2Controller.getInstance().setRandomThumbnail(cover_url);
+        HashMap manga_info = DexHelper.RandomMangaParser(result);
+        Scene2Controller.getInstance().setRandomThumbnail((String) manga_info.get("cover"));
+        Scene2Controller.getInstance().setRandomTitle((String) manga_info.get("title"));
 
         return null;
     }
