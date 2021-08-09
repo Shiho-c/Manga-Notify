@@ -34,9 +34,9 @@ public class CoversLoader extends Task<Void> {
         ;
         //addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
         for (String mangaID : this.MangaIDs) {
-            if (counter % 8 == 0) {
-                titleHorizontalBox = new HBox();
-                coverHorizontalBox = new HBox();
+            if (counter % 7 == 0) {
+                titleHorizontalBox = new HBox(5);
+                coverHorizontalBox = new HBox(5);
                 addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
 
             }
