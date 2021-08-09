@@ -1,7 +1,9 @@
 package sample.Helper;
 
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import okhttp3.*;
 import org.json.JSONObject;
 
@@ -10,7 +12,6 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Helper {
-
     public String BuildUrl(String targetUrl, HashMap<String, String> params) {
         HttpUrl.Builder url_builder = Objects.requireNonNull(HttpUrl.parse(targetUrl)).newBuilder();
         for (String key : params.keySet()) {
@@ -79,5 +80,12 @@ public class Helper {
         return imageView;
     }
 
+    public void ShowPane(AnchorPane pane) {
+        pane.setVisible(true);
+    }
+
+    public void HidePane(AnchorPane pane) {
+        pane.setVisible(false);
+    }
 
 }

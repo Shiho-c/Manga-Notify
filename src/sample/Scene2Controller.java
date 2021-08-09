@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
@@ -16,6 +17,24 @@ public class Scene2Controller {
     private VBox HomeVerticalBox;
     @FXML
     private Button HomeButton;
+
+    @FXML
+    private AnchorPane RandomWindow;
+    @FXML
+    private AnchorPane LatestWindow;
+
+    public void RandomManga() {
+        System.out.println("ra");
+        Helper.HidePane(LatestWindow);
+        Helper.ShowPane(RandomWindow);
+    }
+
+    public void HomeManga() {
+        System.out.println("al");
+        Helper.HidePane(RandomWindow);
+        Helper.ShowPane(LatestWindow);
+    }
+
 
     @FXML
     private void initialize() throws Exception {
