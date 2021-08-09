@@ -4,10 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import okhttp3.*;
 import org.json.JSONObject;
+import sample.CoversLoader;
+import sample.Tasks.ParseRandom;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -20,7 +24,14 @@ public class Helper {
         String url = url_builder.build().toString();
         return url;
     }
+    public void StartThread(Object obj) {
+        Thread th = new Thread((Runnable) obj);
+        th.setDaemon(true);
+        th.start();
 
+
+
+    }
     public JSONObject SendGetRequest(String url, OkHttpClient client) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
@@ -29,11 +40,9 @@ public class Helper {
         try (Response response = client.newCall(request).execute()) {
 
             if (!response.isSuccessful()) {
-                System.out.println("Unexpected bullfuck " + response);
                 throw new IOException("Unexpected code " + response);
             }
 
-            // Get response body
             results = new JSONObject(Objects.requireNonNull(response.body()).string());
 
         }

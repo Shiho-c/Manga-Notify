@@ -32,7 +32,7 @@ public class CoversLoader extends Task<Void> {
         ;
         HBox titleHorizontalBox = new HBox();
         ;
-        //addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
+        HashMap<String, String> mangaInfo;
         for (String mangaID : this.MangaIDs) {
             if (counter % 7 == 0) {
                 titleHorizontalBox = new HBox(5);
@@ -40,8 +40,7 @@ public class CoversLoader extends Task<Void> {
                 addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
 
             }
-            HashMap<String, String> mangaInfo = new HashMap<>();
-            mangaInfo = DexHelper.ViewMangaID(mangaID, mangaInfo);
+            mangaInfo = DexHelper.ViewMangaID(mangaID);
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
             ImageView imageView = new ImageView();
             imageView = Helper.LoadImageFromUrl(imageView, url, 130, 190);

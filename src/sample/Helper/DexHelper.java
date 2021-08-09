@@ -34,7 +34,7 @@ public class DexHelper {
         JSONObject result = Helper.SendGetRequest(url, client);
         JSONArray results = result.getJSONArray("results");
         JSONObject mangaInfo = new JSONObject();
-        ArrayList<String> latestMangaIDs = GetIDFromJSON(results);
+        ArrayList<String> latestMangaIDs = GetLatestMangaIDs(results);
         mangaInfo = ViewMangaIDs(latestMangaIDs, mangaInfo);
         return mangaInfo;
 
@@ -47,27 +47,14 @@ public class DexHelper {
         String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);
         JSONObject result = Helper.SendGetRequest(url, client);
         JSONArray results = result.getJSONArray("results");
-        return GetIDFromJSON(results);
+        return GetLatestMangaIDs(results);
 
     }
 
-    public JSONObject ViewMangaID(String id, JSONObject mangaInfo) throws IOException {
-        String url = String.format("https://api.mangadex.org/manga/%s", id);
-        HashMap<String, String> params = new HashMap<>();
-        params.put("includes[]", "cover_art");
-        url = Helper.BuildUrl(url, params);
 
-        JSONObject result = Helper.SendGetRequest(url, client);
-        String title = GetTitleFromID(result);
-        String cover = GetCoverFromID(result);
-        JSONObject info = new JSONObject();
-        info.put("cover", cover);
-        mangaInfo.put(title, info);
-        return mangaInfo;
 
-    }
-
-    public HashMap<String, String> ViewMangaID(String id, HashMap<String, String> mangaInfo) throws IOException {
+    public HashMap<String, String> ViewMangaID(String id) throws IOException {
+        HashMap<String, String> mangaInfo = new HashMap<>();
         String url = String.format("https://api.mangadex.org/manga/%s", id);
         HashMap<String, String> params = new HashMap<>();
         params.put("includes[]", "cover_art");
@@ -82,13 +69,6 @@ public class DexHelper {
 
     }
 
-    public JSONObject ViewMangaIDs(ArrayList<String> ids, JSONObject mangaInfo) throws IOException {
-        ArrayList<String> titles = new ArrayList<>();
-        for (String id : ids) {
-            mangaInfo = ViewMangaID(id, mangaInfo);
-        }
-        return mangaInfo;
-    }
 
     public String GetTitleFromID(JSONObject result) {
         HashMap<String, String> mangaDictionary = new HashMap<>();
@@ -99,7 +79,6 @@ public class DexHelper {
     }
 
     public String GetCoverFromID(JSONObject result) {
-        HashMap<String, String> mangaDictionary = new HashMap<>();
         JSONArray relationships = result.getJSONArray("relationships");
         String coverFileName = "";
         for (int i = 0; i < relationships.length(); i++) {
@@ -107,12 +86,13 @@ public class DexHelper {
             if (type.get("type").equals("cover_art")) {
                 JSONObject typeAttributes = (JSONObject) type.get("attributes");
                 coverFileName = typeAttributes.get("fileName").toString();
+                break;
             }
         }
         return coverFileName;
     }
 
-    public ArrayList<String> GetIDFromJSON(JSONArray latestResult) {
+    public ArrayList<String> GetLatestMangaIDs(JSONArray latestResult) {
         ArrayList<String> latestMangaIDs = new ArrayList<>();
         for (int i = 0; i < latestResult.length(); i++) {
             JSONObject relationships = (JSONObject) latestResult.get(i);
@@ -127,6 +107,23 @@ public class DexHelper {
             }
         }
         return latestMangaIDs;
+    }
+
+    public String GetID(JSONObject result) {
+        JSONObject data = (JSONObject) result.get("data");
+        if(data.get("type").equals("manga")) {
+            return data.get("id").toString();
+        }
+        return "";
+    }
+
+    public String RandomMangaParser(JSONObject result) throws IOException {
+        String mangaID = GetID(result);
+        HashMap<String, String> mangaInfo;
+        mangaInfo = ViewMangaID(mangaID);
+        String cover_url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
+        System.out.println(cover_url);
+        return cover_url;
     }
 
 

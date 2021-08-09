@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,7 +21,7 @@
                      <children>
                         <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="997.0">
                            <children>
-                              <TextField prefHeight="36.0" prefWidth="760.0" style="-fx-background-color: transparent;" />
+                              <TextField disable="true" prefHeight="36.0" prefWidth="760.0" style="-fx-background-color: transparent;" visible="false" />
                               <TextField fx:id="SearchBox" prefHeight="36.0" prefWidth="233.0" style="-fx-background-radius: 20px;" />
                            </children>
                         </HBox>
@@ -57,11 +56,7 @@
       </VBox>
       <AnchorPane fx:id="RandomWindow" layoutX="166.0" layoutY="14.0" prefHeight="613.0" prefWidth="1026.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;" visible="false">
          <children>
-            <ImageView disable="true" fitHeight="371.0" fitWidth="333.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../Resources/420128.jpg" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="RandomThumbnail" fitHeight="371.0" fitWidth="333.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="RandomTitle" layoutX="272.0" layoutY="35.0" text="Wind Breaker">
                <font>
                   <Font name="Calibri Bold Italic" size="40.0" />
