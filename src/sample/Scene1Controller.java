@@ -8,13 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.Helper.DexHelper;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class Scene1Controller {
-    private final DexHelper Helper = new DexHelper();
     @FXML
     private TextField UsernameInputBox;
     @FXML

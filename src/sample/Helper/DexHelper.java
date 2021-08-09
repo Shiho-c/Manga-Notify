@@ -1,13 +1,12 @@
 package sample.Helper;
 
-import okhttp3.*;
+import okhttp3.OkHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class DexHelper {
     private final OkHttpClient client = new OkHttpClient();
@@ -24,6 +23,7 @@ public class DexHelper {
 
 
     }
+
     /*
     public JSONObject DexLatestUpdates() throws IOException {
         HashMap<String, String> params = new HashMap<>();
@@ -84,7 +84,7 @@ public class DexHelper {
 
     public JSONObject ViewMangaIDs(ArrayList<String> ids, JSONObject mangaInfo) throws IOException {
         ArrayList<String> titles = new ArrayList<>();
-        for(String id: ids) {
+        for (String id : ids) {
             mangaInfo = ViewMangaID(id, mangaInfo);
         }
         return mangaInfo;

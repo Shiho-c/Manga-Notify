@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="578.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Scene1Controller">
-   <children>
-      <Button fx:id="LoginButton" layoutX="180.0" layoutY="216.0" mnemonicParsing="false" onAction="#Login" prefHeight="31.0" prefWidth="219.0" text="Login" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="16.0" />
-         </font>
-      </Button>
-      <TextField fx:id="PasswordInputBox" layoutX="180.0" layoutY="146.0" prefHeight="39.0" prefWidth="219.0" promptText="Password" />
-      <TextField fx:id="UsernameInputBox" layoutX="180.0" layoutY="100.0" prefHeight="39.0" prefWidth="219.0" promptText="Username" />
-      <CheckBox layoutX="180.0" layoutY="192.0" mnemonicParsing="false" text="Remember me" />
-   </children>
+    <children>
+        <Button fx:id="LoginButton" layoutX="180.0" layoutY="216.0" mnemonicParsing="false" onAction="#Login" prefHeight="31.0" prefWidth="219.0" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Italic" size="16.0" />
+            </font>
+        </Button>
+        <TextField fx:id="PasswordInputBox" layoutX="180.0" layoutY="146.0" prefHeight="39.0" prefWidth="219.0" promptText="Password" />
+        <TextField fx:id="UsernameInputBox" layoutX="180.0" layoutY="100.0" prefHeight="39.0" prefWidth="219.0" promptText="Username" />
+        <CheckBox layoutX="180.0" layoutY="192.0" mnemonicParsing="false" text="Remember me" />
+    </children>
 </AnchorPane>

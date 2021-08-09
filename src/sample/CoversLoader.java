@@ -1,37 +1,40 @@
 package sample;
 
-import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import java.util.HashMap;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CoversLoader extends Task<Void> {
     private VBox HomeVerticalBox;
     private ArrayList<String> MangaIDs;
-    private DexHelper DexHelper;
-    private Helper Helper;
+    private sample.Helper.DexHelper DexHelper;
+    private sample.Helper.Helper Helper;
 
     public CoversLoader(VBox HomeVerticalBox, ArrayList<String> MangaIDs) {
         this.HomeVerticalBox = HomeVerticalBox;
         this.MangaIDs = MangaIDs;
     }
 
-    @Override protected Void call () throws Exception {
+    @Override
+    protected Void call() throws Exception {
         DexHelper = new DexHelper();
         Helper = new Helper();
         int counter = 1;
-        HBox coverHorizontalBox =  new HBox();;
-        HBox titleHorizontalBox =  new HBox();;
+        HBox coverHorizontalBox = new HBox();
+        ;
+        HBox titleHorizontalBox = new HBox();
+        ;
         //addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
-        for(String mangaID: this.MangaIDs) {
-            if (counter % 8 == 0 ) {
+        for (String mangaID : this.MangaIDs) {
+            if (counter % 8 == 0) {
                 titleHorizontalBox = new HBox();
                 coverHorizontalBox = new HBox();
                 addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
@@ -52,7 +55,7 @@ public class CoversLoader extends Task<Void> {
     }
 
     public void addHBoxToVBox(HBox hbox, HBox title) {
-        Platform.runLater(new Runnable(){
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 HomeVerticalBox.getChildren().add(title);
@@ -62,7 +65,7 @@ public class CoversLoader extends Task<Void> {
     }
 
     public void SetCoversToHBox(HBox hbox, ImageView imageView) {
-        Platform.runLater(new Runnable(){
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 hbox.getChildren().add(imageView);
@@ -71,7 +74,7 @@ public class CoversLoader extends Task<Void> {
     }
 
     public void SetTitlesToHBox(HBox hbox, String title) {
-        Platform.runLater(new Runnable(){
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Label titleLabel = new Label(title);

@@ -1,10 +1,8 @@
 package sample.Helper;
 
-import javafx.scene.CacheHint;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import okhttp3.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -15,12 +13,13 @@ public class Helper {
 
     public String BuildUrl(String targetUrl, HashMap<String, String> params) {
         HttpUrl.Builder url_builder = Objects.requireNonNull(HttpUrl.parse(targetUrl)).newBuilder();
-        for(String key: params.keySet()) {
+        for (String key : params.keySet()) {
             url_builder.addQueryParameter(key, params.get(key));
         }
         String url = url_builder.build().toString();
         return url;
     }
+
     public JSONObject SendGetRequest(String url, OkHttpClient client) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
@@ -28,7 +27,7 @@ public class Helper {
         JSONObject results;
         try (Response response = client.newCall(request).execute()) {
 
-            if (!response.isSuccessful()){
+            if (!response.isSuccessful()) {
                 System.out.println("Unexpected bullfuck " + response);
                 throw new IOException("Unexpected code " + response);
             }

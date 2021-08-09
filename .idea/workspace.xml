@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_squareup_okhttp3_okhttp_4_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/json_20210307.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CoversLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/CoversLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/Scene1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/Scene1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fxml/Scene2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fxml/Scene2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Helper/DexHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Helper/DexHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Helper/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Helper/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Scene1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Scene1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Scene2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Scene2Controller.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +73,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,6 +80,17 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -80,7 +108,8 @@
     <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
-  <component name="ProjectId" id="1wIBgVwmfczAPdbiBo5ca7G3x0F" />
+  <component name="ProjectId" id="1wU8UDKlL2x8wTyrFs0144NfoAd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -139,22 +168,22 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/sample" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javafx-sdk-16/lib" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Programming-Projects\Java\Projects\Manga-Notify\src\sample" />
+      <recent name="C:\Programming-Projects\Java\Manga-Browse\src\sample" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Programming-Projects\Java\Projects\Manga-Notify\src\sample" />
-      <recent name="C:\Programming-Projects\Java\Projects\Manga-Notify\src\sample\Resources" />
-      <recent name="C:\Programming-Projects\Java\Projects\Manga-Notify\src\sample\Fxml" />
-      <recent name="C:\Programming-Projects\Java\Projects\Manga-Notify\src\sample\Resources\Fxml" />
-      <recent name="C:\Programming-Projects\Java\Projects\Manga-Notify\src\sample\FXML" />
+      <recent name="C:\Programming-Projects\Java\Manga-Browse\src\sample\Fxml" />
+      <recent name="C:\Programming-Projects\Java\Manga-Browse\src\sample" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="sample" />
     </key>
   </component>
   <component name="RunManager">
@@ -185,11 +214,11 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="Manga-Notify" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\javafx-sdk-16\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <module name="Manga-Browse" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Programming-Projects\Java\javafx-sdk-16\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.SceneControllers.*" />
+          <option name="PATTERN" value="sample.Helper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -282,12 +311,23 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">

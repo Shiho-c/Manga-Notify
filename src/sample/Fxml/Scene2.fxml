@@ -6,31 +6,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #000000;" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Scene2Controller">
-   <children>
-      <AnchorPane layoutX="166.0" layoutY="14.0" prefHeight="613.0" prefWidth="950.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px; -fx-text-fill: #ffffff;">
-         <children>
-            <ScrollPane layoutX="6.0" layoutY="7.0" prefHeight="597.0" prefWidth="999.0" style="-fx-background-color: white;">
-               <content>
-                  <VBox fx:id="HomeVerticalBox" prefHeight="596.0" prefWidth="938.0" />
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
-      <Button fx:id="HomeButton" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Home" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="FollowsButton" layoutY="63.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Follows" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="SettingsButton" layoutY="112.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" text="Settings" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0"
+            prefWidth="1200.0" style="-fx-background-color: #000000;" stylesheets="@../application.css"
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.Scene2Controller">
+    <children>
+        <AnchorPane layoutX="166.0" layoutY="14.0" prefHeight="613.0" prefWidth="950.0"
+                    style="-fx-background-color: #ffffff; -fx-background-radius: 15px; -fx-text-fill: #ffffff;">
+            <children>
+                <ScrollPane layoutX="6.0" layoutY="7.0" prefHeight="597.0" prefWidth="999.0"
+                            style="-fx-background-color: white;">
+                    <content>
+                        <VBox fx:id="HomeVerticalBox" prefHeight="596.0" prefWidth="938.0"/>
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
+        <Button fx:id="HomeButton" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0"
+                text="Home" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Button>
+        <Button fx:id="FollowsButton" layoutY="63.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0"
+                text="Follows" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Button>
+        <Button fx:id="SettingsButton" layoutY="112.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0"
+                text="Settings" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Button>
+    </children>
 </AnchorPane>
