@@ -6,6 +6,7 @@
 - Focus on DexHelper's function and optimize it
 - Add a refresh button on Latest updates on Homepage
 - Speed up Random Manga loading time no idea how but ok
+- Buttons that are currently clicked should not be clickable
 
 # Major
 
