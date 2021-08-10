@@ -80,7 +80,6 @@ public class CoversLoader extends Task<Void> {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println(mangaInfo.get("cover"));
                 Label titleLabel = new Label((String) mangaInfo.get("title"));
                 Helper.SetMangaButtonAction(titleLabel, mangaInfo, image);
                 titleLabel.setPrefWidth(130);

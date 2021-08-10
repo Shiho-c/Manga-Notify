@@ -49,13 +49,13 @@ public class Scene2Controller {
         Helper.HidePane(MangaWindow);
         Helper.ShowPane(LatestWindow);
     }
-    public void SetMangaInfo(HashMap<String, String> mangaInfo ){
+    public void SetMangaInfo(HashMap<String, String> mangaInfo, Image image ){
         Helper.HidePane(LatestWindow);
         Helper.ShowPane(MangaWindow);
-        Image image = new Image(mangaInfo.get("cover"), 333, 371, true, true, true);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                SetThumbnail(image);
                 MangaTitle.setText(mangaInfo.get("title"));
                 MangaDescription.setText("Plot: " + mangaInfo.get("description"));
             }
@@ -63,10 +63,13 @@ public class Scene2Controller {
     }
 
     public void SetThumbnail(Image image) {
-        MangaThumbnail.setImage(image);
-        MangaThumbnail.setFitHeight(400);
+
+        MangaThumbnail.setFitHeight(350);
         MangaThumbnail.setFitWidth(230);
-        MangaThumbnail.setPreserveRatio(true);
+        MangaThumbnail.setImage(image);
+        //can't set fixed size - MangaThumbnail.setPreserveRatio(true);
+
+
     }
 
     @FXML

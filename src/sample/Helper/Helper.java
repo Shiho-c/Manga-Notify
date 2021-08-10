@@ -1,10 +1,8 @@
 package sample.Helper;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import okhttp3.*;
 import org.json.JSONObject;
@@ -21,8 +19,7 @@ public class Helper {
         for (String key : params.keySet()) {
             url_builder.addQueryParameter(key, params.get(key));
         }
-        String url = url_builder.build().toString();
-        return url;
+        return url_builder.build().toString();
     }
     public void StartThread(Object obj) {
         Thread th = new Thread((Runnable) obj);
@@ -72,23 +69,14 @@ public class Helper {
 
     }
 
-    public void SetMangaButtonAction(Label manga, HashMap mangaInfo, Image image) {
-        manga.setOnMouseClicked(new EventHandler<MouseEvent>(){
-            @Override
-            public void handle(MouseEvent arg0) {
-                Scene2Controller.getInstance().SetMangaInfo(mangaInfo);
-                Scene2Controller.getInstance().SetThumbnail(image);
-
-            }
-        });
+    public void SetMangaButtonAction(Label manga, HashMap<String, String> mangaInfo, Image image) {
+        manga.setOnMouseClicked(arg0 -> Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image));
     }
     public ImageView LoadImageFromUrl(String url, int width, int height) {
-        Image image = new Image(url, 230, 400, true, true, true);
+        Image image = new Image(url, width, height, true, true, true);
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);
-
-
         return imageView;
     }
 

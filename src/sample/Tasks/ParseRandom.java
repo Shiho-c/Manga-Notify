@@ -1,6 +1,7 @@
 package sample.Tasks;
 
 import javafx.concurrent.Task;
+import javafx.scene.image.Image;
 import org.json.JSONObject;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
@@ -16,8 +17,11 @@ public class ParseRandom extends Task<Void> {
     protected Void call() throws Exception {
         String url = "https://api.mangadex.org/manga/random";
         JSONObject result = Helper.SendGetRequest(url);
-        HashMap manga_info = DexHelper.RandomMangaParser(result);
-        Scene2Controller.getInstance().SetMangaInfo(manga_info);
+
+        HashMap mangaInfo = DexHelper.RandomMangaParser(result);
+        Image image = new Image((String) mangaInfo.get("cover"), 230, 307, true, true, true);
+
+        Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image);
 
         return null;
     }
