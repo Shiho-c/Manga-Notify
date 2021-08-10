@@ -2,6 +2,7 @@ package sample.Tasks;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.geometry.Pos;
 import javafx.scene.CacheHint;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -37,16 +38,20 @@ public class CoversLoader extends Task<Void> {
 
         for (String mangaID : this.MangaIDs) {
             if (counter % 7 == 0) {
-                titleHorizontalBox = new HBox(5);
-                coverHorizontalBox = new HBox(5);
+                titleHorizontalBox = new HBox(15);
+                coverHorizontalBox = new HBox(15);
                 addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
 
             }
             mangaInfo = DexHelper.ViewMangaID(mangaID);
             String coverUrl = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
             mangaInfo.replace("cover", coverUrl);
-            imageView = Helper.LoadImageFromUrl(coverUrl, 130, 190);
+            //imageView = Helper.LoadImageFromUrl(coverUrl, 130, 190);
             Image image = new Image(coverUrl, true);
+            imageView = new ImageView(image);
+            imageView.setFitWidth(130);
+            imageView.setFitHeight(280);
+
             SetTitlesToHBox(titleHorizontalBox, mangaInfo, image);
             SetCoversToHBox(coverHorizontalBox, imageView);
             counter++;
@@ -82,6 +87,7 @@ public class CoversLoader extends Task<Void> {
             public void run() {
                 Label titleLabel = new Label((String) mangaInfo.get("title"));
                 Helper.SetMangaButtonAction(titleLabel, mangaInfo, image);
+                titleLabel.setAlignment(Pos.CENTER);
                 titleLabel.setPrefWidth(130);
                 hbox.getChildren().add(titleLabel);
             }

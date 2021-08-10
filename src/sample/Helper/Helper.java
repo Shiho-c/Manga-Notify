@@ -77,6 +77,8 @@ public class Helper {
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);
+
+
         return imageView;
     }
 

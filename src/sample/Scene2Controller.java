@@ -65,6 +65,8 @@ public class Scene2Controller {
     public void SetThumbnail(Image image) {
         MangaThumbnail.setImage(image);
         MangaThumbnail.setPreserveRatio(true);
+
+
     }
 
     @FXML
