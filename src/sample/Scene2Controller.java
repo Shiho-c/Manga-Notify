@@ -9,9 +9,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import sample.Helper.DexHelper;
 import sample.Helper.Helper;
+import sample.Tasks.CoversLoader;
 import sample.Tasks.ParseRandom;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Scene2Controller {
     private sample.Helper.DexHelper DexHelper;
@@ -25,9 +27,10 @@ public class Scene2Controller {
     private AnchorPane LatestWindow;
     @FXML
     private ImageView RandomThumbnail;
-
     @FXML
     private Label RandomTitle;
+    @FXML
+    private Label RandomDescription;
 
     private static Scene2Controller instance;
     public Scene2Controller() {
@@ -47,27 +50,21 @@ public class Scene2Controller {
         Helper.HidePane(RandomWindow);
         Helper.ShowPane(LatestWindow);
     }
-    public void setRandomTitle(String labelText){
+    public void SetRandomMangaInfo(HashMap<String, String> mangaInfo ){
+        Image image = new Image(mangaInfo.get("cover"), 333, 371, true, true, true);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                RandomTitle.setText(labelText);
-            }
-        });
-    }
-
-    public void setRandomThumbnail(String cover_url) {
-        Image image = new Image(cover_url, 333, 371, true, true, true);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
+                RandomTitle.setText(mangaInfo.get("title"));
+                RandomDescription.setText("Plot: " + mangaInfo.get("description"));
+                System.out.println("Plot: " + mangaInfo.get("description"));
                 RandomThumbnail.setImage(image);
                 RandomThumbnail.setFitHeight(371);
                 RandomThumbnail.setFitHeight(333);
-
             }
         });
     }
+
     @FXML
     private void initialize() throws Exception {
         DexHelper = new DexHelper();

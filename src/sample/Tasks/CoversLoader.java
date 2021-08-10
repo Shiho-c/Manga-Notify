@@ -1,4 +1,4 @@
-package sample;
+package sample.Tasks;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -13,10 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CoversLoader extends Task<Void> {
-    private VBox HomeVerticalBox;
-    private ArrayList<String> MangaIDs;
-    private sample.Helper.DexHelper DexHelper;
-    private sample.Helper.Helper Helper;
+    private final VBox HomeVerticalBox;
+    private final ArrayList<String> MangaIDs;
 
     public CoversLoader(VBox HomeVerticalBox, ArrayList<String> MangaIDs) {
         this.HomeVerticalBox = HomeVerticalBox;
@@ -25,8 +23,8 @@ public class CoversLoader extends Task<Void> {
 
     @Override
     protected Void call() throws Exception {
-        DexHelper = new DexHelper();
-        Helper = new Helper();
+        DexHelper dexHelper = new DexHelper();
+        Helper helper = new Helper();
         int counter = 1;
         HBox coverHorizontalBox = new HBox();
         ;
@@ -40,10 +38,10 @@ public class CoversLoader extends Task<Void> {
                 addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
 
             }
-            mangaInfo = DexHelper.ViewMangaID(mangaID);
+            mangaInfo = dexHelper.ViewMangaID(mangaID);
             String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
-            ImageView imageView = new ImageView();
-            imageView = Helper.LoadImageFromUrl(imageView, url, 130, 190);
+            ImageView imageView;
+            imageView = helper.LoadImageFromUrl(url, 130, 190);
             SetTitlesToHBox(titleHorizontalBox, mangaInfo.get("title"));
             SetCoversToHBox(coverHorizontalBox, imageView);
             counter++;

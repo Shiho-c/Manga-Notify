@@ -15,16 +15,15 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class ParseRandom extends Task<Void> {
-    private Helper Helper = new Helper();
-    private DexHelper DexHelper = new DexHelper();
+    private final Helper Helper = new Helper();
+    private final DexHelper DexHelper = new DexHelper();
+
     @Override
     protected Void call() throws Exception {
-        OkHttpClient client = new OkHttpClient();
         String url = "https://api.mangadex.org/manga/random";
-        JSONObject result = Helper.SendGetRequest(url, client);
+        JSONObject result = Helper.SendGetRequest(url);
         HashMap manga_info = DexHelper.RandomMangaParser(result);
-        Scene2Controller.getInstance().setRandomThumbnail((String) manga_info.get("cover"));
-        Scene2Controller.getInstance().setRandomTitle((String) manga_info.get("title"));
+        Scene2Controller.getInstance().SetRandomMangaInfo(manga_info);
 
         return null;
     }

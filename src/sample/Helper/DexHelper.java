@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DexHelper {
-    private final OkHttpClient client = new OkHttpClient();
     private Helper Helper = new Helper();
 
     public void DexLogin(String username, String password) throws IOException {
@@ -19,33 +18,18 @@ public class DexHelper {
                 .put("username", username)
                 .put("password", password)
                 .toString();
-        Helper.SendPostRequests(url, json, client);
+        Helper.SendPostRequests(url, json);
 
 
     }
 
-    /*
-    public JSONObject DexLatestUpdates() throws IOException {
-        HashMap<String, String> params = new HashMap<>();
-        String limit = "20";
-        params.put("limit", limit);
-        params.put("order[publishAt]", "desc");
-        String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);
-        JSONObject result = Helper.SendGetRequest(url, client);
-        JSONArray results = result.getJSONArray("results");
-        JSONObject mangaInfo = new JSONObject();
-        ArrayList<String> latestMangaIDs = GetLatestMangaIDs(results);
-        mangaInfo = ViewMangaIDs(latestMangaIDs, mangaInfo);
-        return mangaInfo;
-
-    }*/
     public ArrayList<String> DexLatestUpdateIDs() throws IOException {
         HashMap<String, String> params = new HashMap<>();
         String limit = "100";
         params.put("limit", limit);
         params.put("order[publishAt]", "desc");
         String url = Helper.BuildUrl("https://api.mangadex.org/chapter", params);
-        JSONObject result = Helper.SendGetRequest(url, client);
+        JSONObject result = Helper.SendGetRequest(url);
         JSONArray results = result.getJSONArray("results");
         return GetLatestMangaIDs(results);
 
@@ -54,29 +38,42 @@ public class DexHelper {
 
 
     public HashMap<String, String> ViewMangaID(String id) throws IOException {
-        HashMap<String, String> mangaInfo = new HashMap<>();
+        HashMap<String, String> mangaInfo;
         String url = String.format("https://api.mangadex.org/manga/%s", id);
         HashMap<String, String> params = new HashMap<>();
         params.put("includes[]", "cover_art");
         url = Helper.BuildUrl(url, params);
 
-        JSONObject result = Helper.SendGetRequest(url, client);
-        String title = GetTitleFromID(result);
-        String cover = GetCoverFromID(result);
-        mangaInfo.put("cover", cover);
-        mangaInfo.put("title", title);
+        JSONObject result = Helper.SendGetRequest(url);
+        mangaInfo = GetMangaInfo(result);
         return mangaInfo;
 
     }
 
+    public HashMap<String, String> GetMangaInfo(JSONObject result) {
+        HashMap<String, String> mangaInfo = new HashMap<>();
+        JSONObject data = (JSONObject) result.get("data");
+        JSONObject attributes = (JSONObject) data.get("attributes");
+        JSONObject descriptionJson = (JSONObject)  attributes.get("description");
+        JSONObject titleJson = (JSONObject)  attributes.get("title");
+
+        String mangaTitle =  titleJson.get("en").toString();
+        String mangaDescription = descriptionJson.get("en").toString();
+        String coverUrl = GetCoverFromID(result);
+        mangaInfo.put("cover", coverUrl);
+        mangaInfo.put("title", mangaTitle);
+        mangaInfo.put("description", mangaDescription);
+        return mangaInfo;
+
+    }
 
     public String GetTitleFromID(JSONObject result) {
-        HashMap<String, String> mangaDictionary = new HashMap<>();
         JSONObject data = (JSONObject) result.get("data");
         JSONObject attributes = (JSONObject) data.get("attributes");
         JSONObject title = (JSONObject) attributes.get("title");
         return title.get("en").toString();
     }
+
 
     public String GetCoverFromID(JSONObject result) {
         JSONArray relationships = result.getJSONArray("relationships");

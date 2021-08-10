@@ -1,21 +1,17 @@
 package sample.Helper;
 
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import okhttp3.*;
 import org.json.JSONObject;
-import sample.CoversLoader;
-import sample.Tasks.ParseRandom;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Helper {
+    public final OkHttpClient client = new OkHttpClient();
     public String BuildUrl(String targetUrl, HashMap<String, String> params) {
         HttpUrl.Builder url_builder = Objects.requireNonNull(HttpUrl.parse(targetUrl)).newBuilder();
         for (String key : params.keySet()) {
@@ -32,7 +28,7 @@ public class Helper {
 
 
     }
-    public JSONObject SendGetRequest(String url, OkHttpClient client) throws IOException {
+    public JSONObject SendGetRequest(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -49,7 +45,7 @@ public class Helper {
         return results;
     }
 
-    public void SendPostRequests(String url, String json, OkHttpClient client) throws IOException {
+    public void SendPostRequests(String url, String json) throws IOException {
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
         RequestBody body = RequestBody.create(
@@ -68,14 +64,13 @@ public class Helper {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
             // Get response body
-            System.out.println(Objects.requireNonNull(response.body()).string());
         }
 
     }
 
-    public ImageView LoadImageFromUrl(ImageView imageView, String url, int width, int height) {
+    public ImageView LoadImageFromUrl(String url, int width, int height) {
         Image image = new Image(url, width, height, true, true, true);
-        imageView = new ImageView(image);
+        ImageView imageView = new ImageView(image);
         imageView.setFitHeight(190);
         imageView.setFitWidth(130);
         //imageView.setPreserveRatio(true);

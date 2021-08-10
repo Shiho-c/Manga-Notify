@@ -62,32 +62,32 @@
                   <Font name="Calibri Bold Italic" size="40.0" />
                </font>
             </Label>
-            <Line endX="342.0" layoutX="372.0" layoutY="81.0" startX="-100.0" />
+            <Line endX="636.0" layoutX="372.0" layoutY="81.0" startX="-100.0" />
             <Label fx:id="RandomGenres" layoutX="272.0" layoutY="82.0" prefHeight="30.0" prefWidth="75.0" text="Genres: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Line endX="342.0" layoutX="372.0" layoutY="114.0" startX="-100.0" />
+            <Line endX="636.0" layoutX="372.0" layoutY="114.0" startX="-100.0" />
             <Label fx:id="RandomReleased" layoutX="272.0" layoutY="115.0" prefHeight="30.0" prefWidth="75.0" text="Released: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Line endX="342.0" layoutX="372.0" layoutY="147.0" startX="-100.0" />
+            <Line endX="636.0" layoutX="372.0" layoutY="147.0" startX="-100.0" />
             <Label fx:id="RandomAuthors" layoutX="272.0" layoutY="148.0" prefHeight="30.0" prefWidth="75.0" text="Authors: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Line endX="342.0" layoutX="372.0" layoutY="180.0" startX="-100.0" />
+            <Line endX="636.0" layoutX="372.0" layoutY="180.0" startX="-100.0" />
             <Label fx:id="RandomStatus" layoutX="272.0" layoutY="187.0" prefHeight="30.0" prefWidth="75.0" text="Status: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Line endX="342.0" layoutX="372.0" layoutY="219.0" startX="-100.0" />
-            <Label fx:id="RandomPlot" layoutX="272.0" layoutY="221.0" prefHeight="30.0" prefWidth="85.0" text="Plot: ">
+            <Line endX="636.0" layoutX="372.0" layoutY="219.0" startX="-100.0" />
+            <Label fx:id="RandomDescription" alignment="TOP_LEFT" layoutX="272.0" layoutY="221.0" prefHeight="248.0" prefWidth="736.0" text="Plot: " wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
