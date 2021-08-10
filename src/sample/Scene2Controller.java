@@ -41,6 +41,8 @@ public class Scene2Controller {
     }
 
     public void RandomManga() {
+        Randomize = new ParseRandom();
+
         Helper.HidePane(LatestWindow);
         Helper.ShowPane(RandomWindow);
         Helper.StartThread(Randomize);
@@ -51,6 +53,7 @@ public class Scene2Controller {
         Helper.ShowPane(LatestWindow);
     }
     public void SetRandomMangaInfo(HashMap<String, String> mangaInfo ){
+        System.out.println(mangaInfo);
         Image image = new Image(mangaInfo.get("cover"), 333, 371, true, true, true);
         Platform.runLater(new Runnable() {
             @Override
@@ -69,7 +72,6 @@ public class Scene2Controller {
     private void initialize() throws Exception {
         DexHelper = new DexHelper();
         Helper = new Helper();
-        Randomize = new ParseRandom();
         ArrayList<String> MangaIDs = DexHelper.DexLatestUpdateIDs();
         CoversLoader LoadCovers = new CoversLoader(HomeVerticalBox, MangaIDs);
         Helper.StartThread(LoadCovers);
