@@ -67,14 +67,6 @@ public class DexHelper {
 
     }
 
-    public String GetTitleFromID(JSONObject result) {
-        JSONObject data = (JSONObject) result.get("data");
-        JSONObject attributes = (JSONObject) data.get("attributes");
-        JSONObject title = (JSONObject) attributes.get("title");
-        return title.get("en").toString();
-    }
-
-
     public String GetCoverFromID(JSONObject result) {
         JSONArray relationships = result.getJSONArray("relationships");
         String coverFileName = "";

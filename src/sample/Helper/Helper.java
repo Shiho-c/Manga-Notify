@@ -1,10 +1,14 @@
 package sample.Helper;
 
+import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import okhttp3.*;
 import org.json.JSONObject;
+import sample.Scene2Controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -68,18 +72,22 @@ public class Helper {
 
     }
 
-    public ImageView LoadImageFromUrl(String url, int width, int height) {
-        Image image = new Image(url, width, height, true, true, true);
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(190);
-        imageView.setFitWidth(130);
-        //imageView.setPreserveRatio(true);
-        //imageView.preserveRatioProperty();
+    public void SetMangaButtonAction(Label manga, HashMap mangaInfo, Image image) {
+        manga.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent arg0) {
+                Scene2Controller.getInstance().SetMangaInfo(mangaInfo);
+                Scene2Controller.getInstance().SetThumbnail(image);
 
-        ///imageView.setCache(true);
-        //imageView.setCacheHint(CacheHint.SPEED);
-        //imageView.setSmooth(true);
-        //imageView.setPreserveRatio(true);
+            }
+        });
+    }
+    public ImageView LoadImageFromUrl(String url, int width, int height) {
+        Image image = new Image(url, 230, 400, true, true, true);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(width);
+        imageView.setFitHeight(height);
+
 
         return imageView;
     }

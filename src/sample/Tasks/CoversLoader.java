@@ -2,7 +2,9 @@ package sample.Tasks;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.scene.CacheHint;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,7 +17,8 @@ import java.util.HashMap;
 public class CoversLoader extends Task<Void> {
     private final VBox HomeVerticalBox;
     private final ArrayList<String> MangaIDs;
-
+    private final DexHelper DexHelper = new DexHelper();
+    private final Helper Helper = new Helper();
     public CoversLoader(VBox HomeVerticalBox, ArrayList<String> MangaIDs) {
         this.HomeVerticalBox = HomeVerticalBox;
         this.MangaIDs = MangaIDs;
@@ -23,14 +26,15 @@ public class CoversLoader extends Task<Void> {
 
     @Override
     protected Void call() throws Exception {
-        DexHelper dexHelper = new DexHelper();
-        Helper helper = new Helper();
+
         int counter = 1;
         HBox coverHorizontalBox = new HBox();
-        ;
+
         HBox titleHorizontalBox = new HBox();
-        ;
+
         HashMap<String, String> mangaInfo;
+        ImageView imageView;
+
         for (String mangaID : this.MangaIDs) {
             if (counter % 7 == 0) {
                 titleHorizontalBox = new HBox(5);
@@ -38,11 +42,12 @@ public class CoversLoader extends Task<Void> {
                 addHBoxToVBox(coverHorizontalBox, titleHorizontalBox);
 
             }
-            mangaInfo = dexHelper.ViewMangaID(mangaID);
-            String url = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
-            ImageView imageView;
-            imageView = helper.LoadImageFromUrl(url, 130, 190);
-            SetTitlesToHBox(titleHorizontalBox, mangaInfo.get("title"));
+            mangaInfo = DexHelper.ViewMangaID(mangaID);
+            String coverUrl = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
+            mangaInfo.replace("cover", coverUrl);
+            imageView = Helper.LoadImageFromUrl(coverUrl, 130, 190);
+
+            SetTitlesToHBox(titleHorizontalBox, mangaInfo, imageView.getImage());
             SetCoversToHBox(coverHorizontalBox, imageView);
             counter++;
 
@@ -70,12 +75,15 @@ public class CoversLoader extends Task<Void> {
         });
     }
 
-    public void SetTitlesToHBox(HBox hbox, String title) {
+
+    public void SetTitlesToHBox(HBox hbox, HashMap mangaInfo, Image image) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                Label titleLabel = new Label(title);
-                titleLabel.setMinWidth(130);
+                System.out.println(mangaInfo.get("cover"));
+                Label titleLabel = new Label((String) mangaInfo.get("title"));
+                Helper.SetMangaButtonAction(titleLabel, mangaInfo, image);
+                titleLabel.setPrefWidth(130);
                 hbox.getChildren().add(titleLabel);
             }
         });

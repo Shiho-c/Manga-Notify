@@ -22,15 +22,15 @@ public class Scene2Controller {
     @FXML
     private VBox HomeVerticalBox;
     @FXML
-    private AnchorPane RandomWindow;
+    private AnchorPane MangaWindow;
     @FXML
     private AnchorPane LatestWindow;
     @FXML
-    private ImageView RandomThumbnail;
+    private ImageView MangaThumbnail;
     @FXML
-    private Label RandomTitle;
+    private Label MangaTitle;
     @FXML
-    private Label RandomDescription;
+    private Label MangaDescription;
 
     private static Scene2Controller instance;
     public Scene2Controller() {
@@ -42,30 +42,31 @@ public class Scene2Controller {
 
     public void RandomManga() {
         Randomize = new ParseRandom();
-
-        Helper.HidePane(LatestWindow);
-        Helper.ShowPane(RandomWindow);
         Helper.StartThread(Randomize);
     }
 
     public void HomeManga() {
-        Helper.HidePane(RandomWindow);
+        Helper.HidePane(MangaWindow);
         Helper.ShowPane(LatestWindow);
     }
-    public void SetRandomMangaInfo(HashMap<String, String> mangaInfo ){
-        System.out.println(mangaInfo);
+    public void SetMangaInfo(HashMap<String, String> mangaInfo ){
+        Helper.HidePane(LatestWindow);
+        Helper.ShowPane(MangaWindow);
         Image image = new Image(mangaInfo.get("cover"), 333, 371, true, true, true);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                RandomTitle.setText(mangaInfo.get("title"));
-                RandomDescription.setText("Plot: " + mangaInfo.get("description"));
-                System.out.println("Plot: " + mangaInfo.get("description"));
-                RandomThumbnail.setImage(image);
-                RandomThumbnail.setFitHeight(371);
-                RandomThumbnail.setFitHeight(333);
+                MangaTitle.setText(mangaInfo.get("title"));
+                MangaDescription.setText("Plot: " + mangaInfo.get("description"));
             }
         });
+    }
+
+    public void SetThumbnail(Image image) {
+        MangaThumbnail.setImage(image);
+        MangaThumbnail.setFitHeight(400);
+        MangaThumbnail.setFitWidth(230);
+        MangaThumbnail.setPreserveRatio(true);
     }
 
     @FXML
