@@ -63,13 +63,8 @@ public class Scene2Controller {
     }
 
     public void SetThumbnail(Image image) {
-
-        MangaThumbnail.setFitHeight(350);
-        MangaThumbnail.setFitWidth(230);
         MangaThumbnail.setImage(image);
-        //can't set fixed size - MangaThumbnail.setPreserveRatio(true);
-
-
+        MangaThumbnail.setPreserveRatio(true);
     }
 
     @FXML

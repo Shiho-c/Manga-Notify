@@ -46,8 +46,8 @@ public class CoversLoader extends Task<Void> {
             String coverUrl = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
             mangaInfo.replace("cover", coverUrl);
             imageView = Helper.LoadImageFromUrl(coverUrl, 130, 190);
-
-            SetTitlesToHBox(titleHorizontalBox, mangaInfo, imageView.getImage());
+            Image image = new Image(coverUrl, true);
+            SetTitlesToHBox(titleHorizontalBox, mangaInfo, image);
             SetCoversToHBox(coverHorizontalBox, imageView);
             counter++;
 

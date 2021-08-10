@@ -55,13 +55,8 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="MangaWindow" layoutX="166.0" layoutY="14.0" prefHeight="613.0" prefWidth="1026.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;" visible="false">
+      <AnchorPane fx:id="MangaWindow" layoutX="166.0" layoutY="14.0" prefHeight="613.0" prefWidth="1026.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15px;">
          <children>
-            <ImageView fx:id="MangaThumbnail" fitHeight="350.0" fitWidth="230.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" AnchorPane.bottomAnchor="238.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="764.0" AnchorPane.topAnchor="35.0">
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
             <Label fx:id="MangaTitle" layoutX="272.0" layoutY="35.0" prefHeight="46.0" prefWidth="736.0" text="Wind Breaker">
                <font>
                   <Font name="Calibri Bold Italic" size="40.0" />
@@ -97,8 +92,21 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button layoutX="32.0" layoutY="407.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: green;" text="Download" textFill="WHITE" />
-            <Button layoutX="131.0" layoutY="407.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: green;" text="Follow" textFill="WHITE" />
+            <VBox layoutX="20.0" layoutY="30.0" prefHeight="400.0" prefWidth="230.0" spacing="10.0">
+               <children>
+                  <ImageView fx:id="MangaThumbnail" fitHeight="350.0" fitWidth="230.0" pickOnBounds="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="102.0" style="-fx-background-color: green;" text="Download" textFill="WHITE" />
+                        <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="105.0" style="-fx-background-color: green;" text="Follow" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
     </children>
