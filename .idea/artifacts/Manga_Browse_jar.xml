@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="Manga-Browse:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Manga_Browse_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Manga-Browse.jar">
+        <element id="module-output" name="Manga-Browse" />
+      </element>
+      <element id="library" level="project" name="com.squareup.okhttp3:okhttp:4.9.0" />
+      <element id="library" level="project" name="javafxlib" />
+    </root>
+  </artifact>
+</component>

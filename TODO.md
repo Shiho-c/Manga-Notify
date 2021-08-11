@@ -5,9 +5,10 @@
 - Parallel parse data instead of one by one
 - Focus on DexHelper's function and optimize it
 - Add a refresh button on Latest updates on Homepage
+- Buttons that are currently clicked should not be clickable
 - Fix high memory usage(400-500mb for homepage results)
 - Speed up Random Manga loading time no idea how but ok
-- Buttons that are currently clicked should not be clickable
+- Home page loading is too low because 200 images are being created
 
 # Major
 
