@@ -1,6 +1,6 @@
 package sample.Helper;
+import org.json.*;
 
-import okhttp3.OkHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class DexHelper {
-    private Helper Helper = new Helper();
+    private final Helper Helper = new Helper();
+    public DexHelper() {
+    }
 
     public void DexLogin(String username, String password) throws IOException {
 
@@ -19,7 +22,6 @@ public class DexHelper {
                 .put("password", password)
                 .toString();
         Helper.SendPostRequests(url, json);
-
 
     }
 
@@ -56,17 +58,29 @@ public class DexHelper {
         JSONObject attributes = (JSONObject) data.get("attributes");
         JSONObject descriptionJson = (JSONObject)  attributes.get("description");
         JSONObject titleJson = (JSONObject)  attributes.get("title");
+        JSONArray tagsJson = attributes.getJSONArray("tags");
 
         String mangaTitle =  titleJson.get("en").toString();
         String mangaDescription = descriptionJson.get("en").toString();
         String coverUrl = GetCoverFromID(result);
+        String tagIDs = GetTagsFromJson(tagsJson);
+
         mangaInfo.put("cover", coverUrl);
         mangaInfo.put("title", mangaTitle);
         mangaInfo.put("description", mangaDescription);
+        mangaInfo.put("tags", tagIDs);
         return mangaInfo;
 
     }
-
+    public String GetTagsFromJson(JSONArray tags) {
+        StringBuilder tagIDs = new StringBuilder();
+        for(int i = 0; i < tags.length(); i ++){
+            JSONObject res = (JSONObject) tags.get(i);
+            String name = res.getJSONObject("attributes").getJSONObject("name").getString("en");
+            tagIDs.append(name).append("/");
+        }
+        return tagIDs.toString();
+    }
     public String GetCoverFromID(JSONObject result) {
         JSONArray relationships = result.getJSONArray("relationships");
         String coverFileName = "";
