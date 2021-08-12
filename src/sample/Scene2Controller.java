@@ -33,6 +33,9 @@ public class Scene2Controller {
     private Label MangaDescription;
     @FXML
     private Label MangaGenres;
+    @FXML
+    private Label MangaStatus;
+
     private static Scene2Controller instance;
     public Scene2Controller() {
         instance = this;
@@ -58,18 +61,17 @@ public class Scene2Controller {
             public void run() {
                 SetThumbnail(image);
                 MangaTitle.setText(mangaInfo.get("title"));
-                MangaDescription.setText("Plot: " + mangaInfo.get("description"));
                 MangaGenres.setText("Genres: " + mangaInfo.get("tags"));
-                System.out.println(mangaInfo.get("tags"));
+                MangaStatus.setText("Status: " + mangaInfo.get("status"));
+                MangaDescription.setText("Plot: " + mangaInfo.get("description"));
             }
         });
     }
 
     public void SetThumbnail(Image image) {
+        System.out.println(image.getUrl());
         MangaThumbnail.setImage(image);
         MangaThumbnail.setPreserveRatio(true);
-
-
     }
 
     @FXML

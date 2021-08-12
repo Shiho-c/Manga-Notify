@@ -72,6 +72,7 @@ public class Helper {
     public void SetMangaButtonAction(Label manga, HashMap<String, String> mangaInfo, Image image) {
         manga.setOnMouseClicked(arg0 -> Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image));
     }
+
     public ImageView LoadImageFromUrl(String url, int width, int height) {
         Image image = new Image(url, width, height, true, true, true);
         ImageView imageView = new ImageView(image);

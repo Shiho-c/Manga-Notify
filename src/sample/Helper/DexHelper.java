@@ -60,6 +60,7 @@ public class DexHelper {
         JSONObject titleJson = (JSONObject)  attributes.get("title");
         JSONArray tagsJson = attributes.getJSONArray("tags");
 
+        String status = attributes.getString("status");
         String mangaTitle =  titleJson.get("en").toString();
         String mangaDescription = descriptionJson.get("en").toString();
         String coverUrl = GetCoverFromID(result);
@@ -69,6 +70,7 @@ public class DexHelper {
         mangaInfo.put("title", mangaTitle);
         mangaInfo.put("description", mangaDescription);
         mangaInfo.put("tags", tagIDs);
+        mangaInfo.put("status", status);
         return mangaInfo;
 
     }

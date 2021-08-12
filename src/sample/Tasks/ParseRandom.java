@@ -19,7 +19,7 @@ public class ParseRandom extends Task<Void> {
         JSONObject result = Helper.SendGetRequest(url);
 
         HashMap mangaInfo = DexHelper.RandomMangaParser(result);
-        Image image = new Image((String) mangaInfo.get("cover"), 230, 307, true, true, true);
+        Image image = new Image(mangaInfo.get("cover").toString(), true);
 
         Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image);
 
