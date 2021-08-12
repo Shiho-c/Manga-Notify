@@ -8,8 +8,9 @@
 - Buttons that are currently clicked should not be clickable
 - Fix high memory usage(400-500mb for homepage results)
 - Speed up Random Manga loading time no idea how but ok
-- Home page loading is too low because 200 images are being created
+- Prepare a random manga for the random button to load fast
 
+- Home page loading is too low because 200 images are being created
 # Major
 
 - View Manga
