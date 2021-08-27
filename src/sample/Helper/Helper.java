@@ -1,9 +1,9 @@
 package sample.Helper;
 
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import okhttp3.*;
 import org.json.JSONObject;
 import sample.Scene2Controller;
@@ -90,11 +90,11 @@ public class Helper {
         return imageView;
     }
 
-    public void ShowPane(AnchorPane pane) {
+    public void ShowPane(Node pane) {
         pane.setVisible(true);
     }
 
-    public void HidePane(AnchorPane pane) {
+    public void HidePane(Node pane) {
         pane.setVisible(false);
     }
 

@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -23,7 +24,7 @@ public class Scene2Controller {
     @FXML
     private VBox HomeVerticalBox;
     @FXML
-    private AnchorPane MangaWindow;
+    private ScrollPane MangaWindow;
     @FXML
     private AnchorPane LatestWindow;
     @FXML
@@ -84,6 +85,7 @@ public class Scene2Controller {
     }
     private void SetThumbnail(Image image) {
         String url  = image.getUrl();
+        System.out.println(url);
         Image image_ = new Image(url, true);
         MangaThumbnail.setImage(image_);
         MangaThumbnail.setPreserveRatio(true);
