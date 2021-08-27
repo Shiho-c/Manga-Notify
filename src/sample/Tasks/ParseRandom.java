@@ -18,7 +18,7 @@ public class ParseRandom extends Task<Void> {
         String url = "https://api.mangadex.org/manga/random";
         JSONObject result = Helper.SendGetRequest(url);
 
-        HashMap mangaInfo = DexHelper.RandomMangaParser(result);
+        HashMap<String, String> mangaInfo = DexHelper.RandomMangaParser(result);
         Image image = new Image(mangaInfo.get("cover").toString(), true);
 
         Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image);

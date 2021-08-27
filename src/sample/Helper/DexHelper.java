@@ -1,12 +1,14 @@
 package sample.Helper;
-import org.json.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import okhttp3.HttpUrl;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 public class DexHelper {
@@ -47,24 +49,30 @@ public class DexHelper {
         url = Helper.BuildUrl(url, params);
 
         JSONObject result = Helper.SendGetRequest(url);
-        mangaInfo = GetMangaInfo(result);
+        mangaInfo = GetMangaInfo(result, url);
+        mangaInfo.put("id", id);
         return mangaInfo;
 
     }
 
-    public HashMap<String, String> GetMangaInfo(JSONObject result) {
+    public HashMap<String, String> GetMangaInfo(JSONObject result, String url) {
         HashMap<String, String> mangaInfo = new HashMap<>();
         JSONObject data = (JSONObject) result.get("data");
-        JSONObject attributes = (JSONObject) data.get("attributes");
-        JSONObject descriptionJson = (JSONObject)  attributes.get("description");
-        JSONObject titleJson = (JSONObject)  attributes.get("title");
-        JSONArray tagsJson = attributes.getJSONArray("tags");
 
-        String status = attributes.getString("status");
-        String mangaTitle =  titleJson.get("en").toString();
+        JSONObject descriptionJson =  data.getJSONObject("attributes").getJSONObject("description");
+        JSONArray tagsJson =  data.getJSONObject("attributes").getJSONArray("tags");
+        String mangaTitle;
+        String status =  data.getJSONObject("attributes").getString("status");
         String mangaDescription = descriptionJson.get("en").toString();
         String coverUrl = GetCoverFromID(result);
+
         String tagIDs = GetTagsFromJson(tagsJson);
+        if(data.getJSONObject("attributes").getJSONObject("title").has("en")) {
+            mangaTitle = data.getJSONObject("attributes").getJSONObject("title").getString("en");
+        }
+        else {
+            mangaTitle = data.getJSONObject("attributes").getJSONObject("title").getString("jp");
+        }
 
         mangaInfo.put("cover", coverUrl);
         mangaInfo.put("title", mangaTitle);
@@ -83,6 +91,25 @@ public class DexHelper {
         }
         return tagIDs.toString();
     }
+    
+    public ArrayList<String> GetMangaChapters(String id) throws IOException{
+        ArrayList<String> chapters = new ArrayList<>();
+        String url = String.format("https://api.mangadex.org/manga/%s/feed", id);
+        HttpUrl.Builder url_builder = Objects.requireNonNull(HttpUrl.parse(url)).newBuilder();
+        url_builder.addQueryParameter("translatedLanguage[]", "en");
+        url_builder.addQueryParameter("order[chapter]", "asc");
+        url_builder.addQueryParameter("limit", "500");
+        JSONObject results = Helper.SendGetRequest(url_builder.build().toString());
+        JSONArray resultsArray = results.getJSONArray("results");
+        for(int i = 0; i < resultsArray.length(); i ++) {
+            JSONObject result = (JSONObject) resultsArray.get(i);
+            String chapter = "Chapter " +  result.getJSONObject("data").getJSONObject("attributes").getString("chapter") + ": " +  result.getJSONObject("data").getJSONObject("attributes").getString("title");
+            chapters.add(chapter);
+        }
+
+        return chapters;
+    }
+
     public String GetCoverFromID(JSONObject result) {
         JSONArray relationships = result.getJSONArray("relationships");
         String coverFileName = "";

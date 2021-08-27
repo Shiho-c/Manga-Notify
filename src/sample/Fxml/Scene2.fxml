@@ -107,6 +107,7 @@
                   </HBox>
                </children>
             </VBox>
+            <VBox fx:id="ChaptersBox" layoutX="20.0" layoutY="446.0" prefHeight="164.0" prefWidth="999.0" />
          </children>
       </AnchorPane>
     </children>

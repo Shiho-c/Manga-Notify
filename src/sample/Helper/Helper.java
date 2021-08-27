@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Helper {
+
     public final OkHttpClient client = new OkHttpClient();
     public String BuildUrl(String targetUrl, HashMap<String, String> params) {
         HttpUrl.Builder url_builder = Objects.requireNonNull(HttpUrl.parse(targetUrl)).newBuilder();
@@ -56,7 +57,7 @@ public class Helper {
 
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("User-Agent", "OkHttp Bot")
+                .addHeader("User-Agent", "Googlebot")
                 .post(body)
                 .build();
 
@@ -70,7 +71,13 @@ public class Helper {
     }
 
     public void SetMangaButtonAction(Label manga, HashMap<String, String> mangaInfo, Image image) {
-        manga.setOnMouseClicked(arg0 -> Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image));
+        manga.setOnMouseClicked(arg0 -> {
+            try {
+                Scene2Controller.getInstance().SetMangaInfo(mangaInfo, image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public ImageView LoadImageFromUrl(String url, int width, int height) {

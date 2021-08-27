@@ -3,7 +3,6 @@ package sample.Tasks;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;
-import javafx.scene.CacheHint;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,11 +31,12 @@ public class CoversLoader extends Task<Void> {
         HBox coverHorizontalBox = new HBox();
 
         HBox titleHorizontalBox = new HBox();
-
+    
+        
         HashMap<String, String> mangaInfo;
         ImageView imageView;
-
         for (String mangaID : this.MangaIDs) {
+            //System.out.printf("Loading %d out of %d Manga \n", counter, this.MangaIDs.size());
             if (counter % 7 == 0) {
                 titleHorizontalBox = new HBox(15);
                 coverHorizontalBox = new HBox(15);
@@ -45,21 +45,14 @@ public class CoversLoader extends Task<Void> {
             }
             mangaInfo = DexHelper.ViewMangaID(mangaID);
             String coverUrl = String.format("https://uploads.mangadex.org/covers/%s/%s", mangaID, mangaInfo.get("cover"));
-            System.out.println("replacing cover");
             mangaInfo.replace("cover", coverUrl);
-            System.out.println("creating image");
-            Image image = new Image(coverUrl, 130, 280, false, true, true);
-            System.out.println("setting image view");
+            Image image = new Image(coverUrl, 130, 280, true, true, true);
             imageView = new ImageView(image);
-            System.out.println("setting imageview size");
-            //imageView.setFitWidth(130);
-            //imageView.setFitHeight(280);
+            imageView.setFitWidth(130);
+            imageView.setFitHeight(280);
             //imageView.setPreserveRatio(true);
-            System.out.println("adding titles");
             SetTitlesToHBox(titleHorizontalBox, mangaInfo, image);
-            System.out.println("adding covers");
             SetCoversToHBox(coverHorizontalBox, imageView);
-            System.out.println("next pls");
             counter++;
 
         }
@@ -87,7 +80,7 @@ public class CoversLoader extends Task<Void> {
     }
 
 
-    public void SetTitlesToHBox(HBox hbox, HashMap mangaInfo, Image image) {
+    public void SetTitlesToHBox(HBox hbox, HashMap<String, String> mangaInfo, Image image) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

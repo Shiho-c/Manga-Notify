@@ -12,6 +12,7 @@ import sample.Helper.Helper;
 import sample.Tasks.CoversLoader;
 import sample.Tasks.ParseRandom;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,6 +36,8 @@ public class Scene2Controller {
     private Label MangaGenres;
     @FXML
     private Label MangaStatus;
+    @FXML
+    private VBox ChaptersBox;
 
     private static Scene2Controller instance;
     public Scene2Controller() {
@@ -53,13 +56,16 @@ public class Scene2Controller {
         Helper.HidePane(MangaWindow);
         Helper.ShowPane(LatestWindow);
     }
-    public void SetMangaInfo(HashMap<String, String> mangaInfo, Image image ){
+    public void SetMangaInfo(HashMap<String, String> mangaInfo, Image image ) throws IOException{
+        ArrayList<String> Chapters = DexHelper.GetMangaChapters(mangaInfo.get("id"));
+
         Helper.HidePane(LatestWindow);
         Helper.ShowPane(MangaWindow);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 SetThumbnail(image);
+                SetChapters(Chapters);
                 MangaTitle.setText(mangaInfo.get("title"));
                 MangaGenres.setText("Genres: " + mangaInfo.get("tags"));
                 MangaStatus.setText("Status: " + mangaInfo.get("status"));
@@ -68,9 +74,18 @@ public class Scene2Controller {
         });
     }
 
-    public void SetThumbnail(Image image) {
-        System.out.println(image.getUrl());
-        MangaThumbnail.setImage(image);
+    private void SetChapters(ArrayList<String> Chapters) {
+        ChaptersBox.getChildren().clear();
+        for(String chap: Chapters) {
+            Label chapterLabel = new Label();
+            chapterLabel.setText(chap);
+            ChaptersBox.getChildren().add(chapterLabel);
+        }
+    }
+    private void SetThumbnail(Image image) {
+        String url  = image.getUrl();
+        Image image_ = new Image(url, true);
+        MangaThumbnail.setImage(image_);
         MangaThumbnail.setPreserveRatio(true);
     }
 

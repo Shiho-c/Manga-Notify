@@ -9,7 +9,7 @@
 - Fix high memory usage(400-500mb for homepage results)
 - Speed up Random Manga loading time no idea how but ok
 - Prepare a random manga for the random button to load fast
-
+- Display chapters list properly using button and add a scroll bar
 - Home page loading is too low because 200 images are being created
 # Major
 
